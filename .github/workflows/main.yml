@@ -1,13 +1,13 @@
-name: Merge upstream branches
+name: Merge Upstream Changes
 on:
  schedule:
     - cron: '*/30 * * * *' # every 30 minutes
  workflow_dispatch: # on button click
 
 jobs:
-  sync_with_upstream:
+  Merge_Upstream_Changes:
     runs-on: ubuntu-latest
-    name: Sync main with upstream latest
+    name: Merge upstream with main
     steps:
      - uses: actions/checkout@v2
        with:
