@@ -35,7 +35,7 @@ jobs:
          
          if [ "$PULL_OUTPUT" != "Already up to date." ]; then
            #set commit message
-           git commit --amend -m "Merge changes from upstream" -m "Upstream: $upstream_url"
+           git commit --amend -m "Merge changes from upstream" -m "Upstream: $upstream_url \n Upstream branch: $upstream_branch"
            #push changes to origin 
            git push origin "$target_branch"
          else
