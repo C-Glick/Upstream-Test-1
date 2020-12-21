@@ -12,33 +12,28 @@ jobs:
      - uses: actions/checkout@v2
        with:
         ref: main                   #target branch
-        #submodules: 'recursive'     ### possibly needed in your situation  
+        #submodules: 'recursive'     # possibly needed in your situation  
      - name: Merge Upstream
        run: |
          git config --global user.name 'Actions Bot'
          git config --global user.email '<>'
 
          # "git checkout master" is unnecessary, already here by default
-         git pull --ff-only --unshallow  # this option is very important, you would get
+         git pull --ff-only --unshallow  # unshallow option is very important, you would get
                                # complaints about unrelated histories without it.
                                # (but actions/checkout@v2 can also be instructed
                                # to fetch all git depth right from the start)
 
          git remote add upstream https://github.com/Quest-Board/Upstream-Test.git     #change upstream url here
          git fetch upstream
-
-         # Neither forget the -b opt,
-         # the feature/x ref is ambiguous at this stage
-         #git checkout -b feature/x origin/feature/x
-         #git merge --no-edit upstream/feature/x
-         #git push origin feature/x
-
-         #git checkout main
-         #git merge --no-edit upstream/main
+         
          PULL_OUTPUT=$(git pull -s recursive -X ours upstream main)   #pull from upstream, merge favoring our changes if conflicts
          
-         echo "PULL OUTPUT:$PULL_OUTPUT"
          if [ "$PULL_OUTPUT" != "Already up to date." ]; then
-           git commit --amend -m "Merge changes from upstream"   #set commit message
-           git push origin main                          #push changes to origin
+           #set commit message
+           git commit --amend -m "Merge changes from upstream" -m "Upstream: https://github.com/Quest-Board/Upstream-Test.git"
+           #push changes to origin 
+           git push origin main
+         else
+           echo "Fork already up to date with upstream. Not merging"
          fi
