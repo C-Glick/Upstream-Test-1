@@ -38,7 +38,7 @@ jobs:
          PULL_OUTPUT=$(git pull -s recursive -X ours upstream main)   #pull from upstream, merge favoring our changes if conflicts
          
          echo "PULL OUTPUT:$PULL_OUTPUT"
-         if[ "$PULL_OUTPUT" != "Already up to date." ]; then
+         if [ "$PULL_OUTPUT" != "Already up to date." ]; then
            git commit --amend -m "Merge changes from upstream"   #set commit message
            git push origin main                          #push changes to origin
          fi
