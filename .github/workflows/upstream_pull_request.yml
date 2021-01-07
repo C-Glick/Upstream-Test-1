@@ -13,3 +13,4 @@ jobs:
        with:
          source_branch: Quest-Board/Upstream-Test
          destination_branch: main 
+         github_token: ${{ secrets.GITHUB_TOKEN }}
