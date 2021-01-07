@@ -1,0 +1,15 @@
+name: Upstream_Pull_Request
+on:
+ schedule:
+    - cron: '*/30 * * * *' # every 30 minutes
+ workflow_dispatch: # on button click
+
+jobs:
+  Upstream_Pull_Request:
+    runs-on: ubuntu-latest
+    name: Upstream pull request
+    steps:
+     - uses: repo-sync/pull-request@v2.5
+       with:
+         source_branch: Quest-Board/Upstream-Test
+         destination_branch: main 
