@@ -2,4 +2,4 @@ version: "1"
 rules:
   - base: main
     upstream: Quest-Board:main    # change `wei` to the owner of upstream repo
-    mergeMethod: rebase
+    mergeMethod: hardreset
