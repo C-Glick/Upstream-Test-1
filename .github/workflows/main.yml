@@ -46,11 +46,11 @@ jobs:
          git remote add upstream "$upstream_url"
          git fetch upstream
          
-         PULL_OUTPUT=$(git pull --rebase --no-edit upstream "$upstream_branch")   #pull from upstream
+         PULL_OUTPUT=$(git pull --no-rebase --no-edit upstream "$upstream_branch")   #pull from upstream
          
          if [ "$PULL_OUTPUT" != "Already up to date." ]; then           
            #set commit message
-           #git commit --amend -m "Merge changes from upstream" -m "Upstream: $upstream_url Upstream branch: $upstream_branch"
+           git commit --amend -m "Merge changes from upstream" -m "Upstream: $upstream_url Upstream branch: $upstream_branch"
            #push changes to origin 
            git push origin "$target_branch"
          else
